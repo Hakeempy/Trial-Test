@@ -1,0 +1,32 @@
+name: Run Jupyter Notebook
+
+# Controls when the workflow will run (e.g., every day at midnight UTC)
+on:
+  schedule:
+    - cron: "*/2 0 0 0 0"  # Run daily at midnight UTC
+  workflow_dispatch:  # Allows for manual triggering of the workflow as well
+
+jobs:
+  run-notebook:
+    runs-on: ubuntu-latest  # Use the latest available Ubuntu runner
+    
+    steps:
+      # Check out the repository code
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8  # Or whatever version you need
+
+      # Install dependencies (like nbconvert and jupyter)
+      - name: Install dependencies
+        run: |
+          pip install jupyter nbconvert
+
+      # Execute the notebook
+      - name: Run the Jupyter notebook
+        run: |
+          jupyter nbconvert --to notebook --execute --inplace <TrialAnalysis.ipynb>
