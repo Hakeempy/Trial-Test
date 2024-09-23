@@ -25,12 +25,11 @@ jobs:
       - name: Install dependencies
         run: |
           pip install jupyter nbconvert
-          pip install pandas numpy seaborn matplotlib
+          pip install pandas numpy seaborn matplotlib gdown
           
-      - name: Download Dataset
+      - name: Download Dataset from Google Drive
         run: |
-          wget https://drive.google.com/file/d/1o_fp1yXRatyruux-ntB6YvyyO-t6R71L/view?usp=sharing -O programming-languages-2004-2024.csv
-
+          gdown --id 1o_fp1yXRatyruux-ntB6YvyyO-t6R71L -O programming-languages-2004-2024.csv
 
       # Execute the notebook
       - name: Run the Jupyter notebook
