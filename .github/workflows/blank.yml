@@ -25,6 +25,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install jupyter nbconvert
+          pip install pandas numpy seaborn matplotlib
 
       # Execute the notebook
       - name: Run the Jupyter notebook
